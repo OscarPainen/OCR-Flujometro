@@ -13,12 +13,6 @@ Este proyecto implementa un pipeline de OCR robusto que:
 - **Preprocesa imágenes** con filtros avanzados para mejorar precisión del OCR
 - **Visualiza en vivo** la región de interés y el resultado del preprocesamiento
 
-## 🎯 Casos de uso
-
-- Lectura automatizada de medidores de agua, gas o electricidad
-- Monitoreo de flujómetros en sistemas HVAC
-- Captura de datos de pantallas digitales en ambientes con iluminación variable
-- Integración en sistemas de adquisición de datos industrial
 
 ## 🔧 Requisitos previos
 
@@ -41,37 +35,7 @@ Se instalan automáticamente con `requirements.txt`:
 - `pytesseract` - Interfaz Python para Tesseract
 - `Pillow` - Manipulación de imágenes
 
-## 📦 Instalación
-
-### 1. Clonar repositorio
-```bash
-git clone <repositorio-url>
-cd OCR-Flujometro
-```
-
-### 2. Crear entorno virtual
-```bash
-python -m venv ocr
-```
-
-### 3. Activar entorno virtual
-
-**Windows (PowerShell):**
-```powershell
-.\ocr\Scripts\Activate.ps1
-```
-
-**Windows (cmd):**
-```cmd
-ocr\Scripts\activate.bat
-```
-
-**Linux/macOS:**
-```bash
-source ocr/bin/activate
-```
-
-### 4. Instalar dependencias
+### 3. Instalar dependencias
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -85,7 +49,7 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\ruta\a\tesseract.exe"
 
 ## 🚀 Uso
 
-### Script principal - `ocrtest.py`
+### Script test principal - `ocrtest.py`
 Versión completa con estabilización, UI visual y registro en CSV.
 
 ```bash
@@ -110,41 +74,6 @@ INTERVALO_PRINT = 10          # Segundos entre impresiones en terminal
 INTERVALO_OCR   = 0.3         # Segundos entre ejecuciones de OCR
 roi_x, roi_y    = 80, 80      # Posición superior izquierda del ROI (píxeles)
 roi_ancho, roi_alto = 500, 220 # Ancho y alto del ROI
-```
-
-### Script alternativo - `ocr_test.py`
-Versión modular con configuración por dataclass y soporte para cámaras IP/RTSP.
-
-**Uso básico:**
-```bash
-python ocr_test.py
-```
-
-**Con argumentos:**
-```bash
-# Especificar índice de cámara
-python ocr_test.py --camera-index 0
-
-# Usar cámara IP (RTSP)
-python ocr_test.py --rtsp-url "rtsp://192.168.1.100:554/stream"
-
-# Ajustar velocidad de OCR
-python ocr_test.py --ocr-every-sec 0.5
-
-# Cambiar ventana de estabilización
-python ocr_test.py --stabilization-window 10
-```
-
-**Ver todas las opciones:**
-```bash
-python ocr_test.py --help
-```
-
-### Script de calibración - `webcam.py`
-Herramienta útil para ajustar la región ROI sin ejecutar OCR.
-
-```bash
-python webcam.py
 ```
 
 Permite visualizar dónde se capturará la región sin procesamiento OCR pesado.
@@ -174,63 +103,6 @@ timestamp,valor
 - Excluir completamente etiquetas, decimales o caracteres especiales
 - Probar en diferentes ángulos y distancias de la cámara
 
-## 🛠️ Troubleshooting
-
-### Error: "No se pudo abrir la cámara"
-- Verificar que la cámara está conectada y encendida
-- Cambiar `CAMARA_INDEX` (0 para webcam integrada, 1+ para externas)
-- En Windows, cerrar otras aplicaciones usando la cámara
-
-### Error: "Falta pytesseract"
-```bash
-pip install pytesseract
-```
-
-### OCR devuelve valores incorrectos o en blanco
-1. Ejecutar `webcam.py` para verificar que el ROI es correcto
-2. Mejorar iluminación del medidor
-3. Limpiar lentes de la cámara
-4. Ajustar parámetros de preprocesamiento en el código:
-   - Modificar `bilateral filter`
-   - Cambiar umbral OTSU a adaptive
-   - Aumentar factor `upscale` (2.0 → 3.0)
-
-### Tesseract no encontrado
-```bash
-# Verificar instalación
-tesseract --version
-
-# Si no está instalado, descargarlo desde:
-# https://github.com/UB-Mannheim/tesseract/wiki
-```
-
-### Lecturas inestables o ruidosas
-- Aumentar `stabilization_window` en `ocr_test.py`
-- Aumentar `INTERVALO_OCR` en `ocrtest.py` (menos frecuencia = más suavidad)
-- Mejorar iluminación y contraste del medidor
-
-## 📈 Rendimiento
-
-- **Captura de frames**: ~30 FPS (depende de cámara)
-- **OCR cada**: 0.25-0.3 segundos (configurable)
-- **Consumo CPU**: ~10-20% en Windows (i7 6th gen)
-- **Precisión**: 95%+ con medidores bien iluminados
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-1. Hacer fork del proyecto
-2. Crear una rama para tu feature
-3. Commit con mensajes descriptivos
-4. Hacer push y abrir un Pull Request
-
-## 📝 Licencia
-
-Este proyecto está bajo licencia MIT. Ver archivo LICENSE para más detalles.
-
-## 📧 Contacto
-
-Para reportar bugs, sugerencias o preguntas, abre un issue en el repositorio.
 
 ## 🔗 Referencias
 
@@ -238,6 +110,11 @@ Para reportar bugs, sugerencias o preguntas, abre un issue en el repositorio.
 - [Tesseract OCR wiki](https://github.com/UB-Mannheim/tesseract/wiki)
 - [PyTesseract docs](https://pytesseract.readthedocs.io/)
 - [RTSP streaming cameras](https://www.generic-camera.com/manual/rtsp.html)
+
+## Autor
+
+**Oscar Andrés Painen Briones**   
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Oscar%20Painen-blue?logo=linkedin)](https://www.linkedin.com/in/oscarpainenbriones/)
 
 ---
 
