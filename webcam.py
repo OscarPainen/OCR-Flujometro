@@ -1,6 +1,6 @@
 import cv2
 
-camara = cv2.VideoCapture(1, cv2.CAP_DSHOW)  # Usa índice 1 para la webcam externa (ajusta si es necesario)
+camara = cv2.VideoCapture(1, cv2.CAP_DSHOW)  # Usa índice 1 para la webcam externa (ajusta si es necesario) // CAP_DSHOW estable en windows
 
 if not camara.isOpened():
     print("❌ No se pudo abrir la cámara")
